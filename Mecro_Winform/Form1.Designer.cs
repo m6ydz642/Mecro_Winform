@@ -29,11 +29,20 @@ namespace Mecro_Winform
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.ylabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.xlabel = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Button();
+            this.textBox = new System.Windows.Forms.TextBox();
+            this.exeute = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.savePoint = new System.Windows.Forms.Button();
+            this.saveX_Point = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.saveY_Point = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -41,14 +50,14 @@ namespace Mecro_Winform
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(594, 196);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 12);
+            this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "X좌표값";
+            this.label1.Text = "실시간 X좌표값";
             // 
             // ylabel
             // 
             this.ylabel.AutoSize = true;
-            this.ylabel.Location = new System.Drawing.Point(663, 219);
+            this.ylabel.Location = new System.Drawing.Point(689, 219);
             this.ylabel.Name = "ylabel";
             this.ylabel.Size = new System.Drawing.Size(38, 12);
             this.ylabel.TabIndex = 2;
@@ -59,14 +68,14 @@ namespace Mecro_Winform
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(594, 219);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.Size = new System.Drawing.Size(89, 12);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Y좌표 값";
+            this.label3.Text = "실시간 Y좌표값";
             // 
             // xlabel
             // 
             this.xlabel.AutoSize = true;
-            this.xlabel.Location = new System.Drawing.Point(663, 196);
+            this.xlabel.Location = new System.Drawing.Point(689, 196);
             this.xlabel.Name = "xlabel";
             this.xlabel.Size = new System.Drawing.Size(38, 12);
             this.xlabel.TabIndex = 4;
@@ -82,11 +91,85 @@ namespace Mecro_Winform
             this.timer.UseVisualStyleBackColor = true;
             this.timer.Click += new System.EventHandler(this.timer_Click);
             // 
+            // textBox
+            // 
+            this.textBox.Location = new System.Drawing.Point(178, 216);
+            this.textBox.Name = "textBox";
+            this.textBox.Size = new System.Drawing.Size(197, 21);
+            this.textBox.TabIndex = 6;
+            // 
+            // exeute
+            // 
+            this.exeute.Location = new System.Drawing.Point(362, 303);
+            this.exeute.Name = "exeute";
+            this.exeute.Size = new System.Drawing.Size(75, 23);
+            this.exeute.TabIndex = 7;
+            this.exeute.Text = "실행";
+            this.exeute.UseVisualStyleBackColor = true;
+            this.exeute.Click += new System.EventHandler(this.exeute_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // savePoint
+            // 
+            this.savePoint.Location = new System.Drawing.Point(260, 303);
+            this.savePoint.Name = "savePoint";
+            this.savePoint.Size = new System.Drawing.Size(75, 23);
+            this.savePoint.TabIndex = 8;
+            this.savePoint.Text = "좌표찍기";
+            this.savePoint.UseVisualStyleBackColor = true;
+            this.savePoint.Click += new System.EventHandler(this.savePoint_Click);
+            // 
+            // saveX_Point
+            // 
+            this.saveX_Point.AutoSize = true;
+            this.saveX_Point.Location = new System.Drawing.Point(504, 196);
+            this.saveX_Point.Name = "saveX_Point";
+            this.saveX_Point.Size = new System.Drawing.Size(38, 12);
+            this.saveX_Point.TabIndex = 12;
+            this.saveX_Point.Text = "label1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(435, 219);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Y좌표 값";
+            // 
+            // saveY_Point
+            // 
+            this.saveY_Point.AutoSize = true;
+            this.saveY_Point.Location = new System.Drawing.Point(504, 219);
+            this.saveY_Point.Name = "saveY_Point";
+            this.saveY_Point.Size = new System.Drawing.Size(38, 12);
+            this.saveY_Point.TabIndex = 10;
+            this.saveY_Point.Text = "label2";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(435, 196);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 12);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "X좌표값";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.saveX_Point);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.saveY_Point);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.savePoint);
+            this.Controls.Add(this.exeute);
+            this.Controls.Add(this.textBox);
             this.Controls.Add(this.timer);
             this.Controls.Add(this.xlabel);
             this.Controls.Add(this.label3);
@@ -106,6 +189,14 @@ namespace Mecro_Winform
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label xlabel;
         private System.Windows.Forms.Button timer;
+        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Button exeute;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button savePoint;
+        private System.Windows.Forms.Label saveX_Point;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label saveY_Point;
+        private System.Windows.Forms.Label label6;
     }
 }
 
