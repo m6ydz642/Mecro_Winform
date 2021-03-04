@@ -55,7 +55,7 @@ namespace Mecro_Winform
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(495, 67);
+            this.label1.Location = new System.Drawing.Point(493, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 1;
@@ -64,7 +64,7 @@ namespace Mecro_Winform
             // ylabel
             // 
             this.ylabel.AutoSize = true;
-            this.ylabel.Location = new System.Drawing.Point(590, 90);
+            this.ylabel.Location = new System.Drawing.Point(588, 87);
             this.ylabel.Name = "ylabel";
             this.ylabel.Size = new System.Drawing.Size(38, 12);
             this.ylabel.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace Mecro_Winform
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(495, 90);
+            this.label3.Location = new System.Drawing.Point(493, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 12);
             this.label3.TabIndex = 3;
@@ -82,7 +82,7 @@ namespace Mecro_Winform
             // xlabel
             // 
             this.xlabel.AutoSize = true;
-            this.xlabel.Location = new System.Drawing.Point(590, 67);
+            this.xlabel.Location = new System.Drawing.Point(588, 64);
             this.xlabel.Name = "xlabel";
             this.xlabel.Size = new System.Drawing.Size(38, 12);
             this.xlabel.TabIndex = 4;
