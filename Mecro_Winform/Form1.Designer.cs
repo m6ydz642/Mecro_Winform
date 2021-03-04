@@ -97,10 +97,11 @@ namespace Mecro_Winform
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(197, 21);
             this.textBox.TabIndex = 6;
+            this.textBox.Text = "텍스트를 입력하세요";
             // 
             // exeute
             // 
-            this.exeute.Location = new System.Drawing.Point(362, 303);
+            this.exeute.Location = new System.Drawing.Point(252, 284);
             this.exeute.Name = "exeute";
             this.exeute.Size = new System.Drawing.Size(75, 23);
             this.exeute.TabIndex = 7;
@@ -114,18 +115,18 @@ namespace Mecro_Winform
             // 
             // savePoint
             // 
-            this.savePoint.Location = new System.Drawing.Point(260, 303);
+            this.savePoint.Location = new System.Drawing.Point(450, 208);
             this.savePoint.Name = "savePoint";
             this.savePoint.Size = new System.Drawing.Size(75, 23);
             this.savePoint.TabIndex = 8;
-            this.savePoint.Text = "좌표찍기";
+            this.savePoint.Text = "대상 좌표찍기";
             this.savePoint.UseVisualStyleBackColor = true;
             this.savePoint.Click += new System.EventHandler(this.savePoint_Click);
             // 
             // saveX_Point
             // 
             this.saveX_Point.AutoSize = true;
-            this.saveX_Point.Location = new System.Drawing.Point(504, 196);
+            this.saveX_Point.Location = new System.Drawing.Point(499, 132);
             this.saveX_Point.Name = "saveX_Point";
             this.saveX_Point.Size = new System.Drawing.Size(38, 12);
             this.saveX_Point.TabIndex = 12;
@@ -134,7 +135,7 @@ namespace Mecro_Winform
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(435, 219);
+            this.label4.Location = new System.Drawing.Point(430, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 11;
@@ -143,7 +144,7 @@ namespace Mecro_Winform
             // saveY_Point
             // 
             this.saveY_Point.AutoSize = true;
-            this.saveY_Point.Location = new System.Drawing.Point(504, 219);
+            this.saveY_Point.Location = new System.Drawing.Point(499, 155);
             this.saveY_Point.Name = "saveY_Point";
             this.saveY_Point.Size = new System.Drawing.Size(38, 12);
             this.saveY_Point.TabIndex = 10;
@@ -152,7 +153,7 @@ namespace Mecro_Winform
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(435, 196);
+            this.label6.Location = new System.Drawing.Point(430, 132);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 12);
             this.label6.TabIndex = 9;
