@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,6 +25,8 @@ namespace Mecro_Winform
 
         int timeMecro;
         int timeX_YPostion;
+      
+
         public Form1()
         {
             InitializeComponent();
@@ -61,6 +64,7 @@ namespace Mecro_Winform
 
             timerMecro.Stop(); // 매크로는 중지하고 좌표설정 타이머는 작동
             timerX_YPostion.Start();
+            MessageBox.Show("매크로가 중단되었습니다");
          
         }
 
@@ -89,14 +93,17 @@ namespace Mecro_Winform
         {
             timerX_YPostion.Stop(); // 좌표 표시하던 타이머는 멈춤 
 
+            // 해당 좌표로 마우스 이동
             Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
                                                                                                       // string으로 변환함   
             mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
             mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
 
             timerMecro.Start(); // 실행시 타이머 시작, 좌표 실시간으로 움직이게 할꺼 
-            SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
-
+            
+                Thread.Sleep(300);
+                SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
+            
         }
         private void pressF2_Key()
         {
@@ -113,8 +120,8 @@ namespace Mecro_Winform
             timeMecro++; // 매크로가 작동하면서 ++처리함 
             // 타이머가 일정시간 이상 되었을때 다른 버튼클릭같은 이벤트 하면 됨
             Console.WriteLine("timeMecro : " + timeMecro);
-
-            if (timeMecro >= 60) // 약 7초 정도
+          
+            if (timeMecro >= 20) // 약 7초 정도
             {
                 Console.WriteLine(timeMecro + " 재시작");
                 timeMecro = 0;
@@ -125,8 +132,11 @@ namespace Mecro_Winform
                 mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
                 mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
                 /*********************************************************/
-                for (int i = 0; i < textBox.Text.Length; i++)  // 텍스트 길이만큼 삭제
+                for (int i = textBox.Text.Length; i >= 0; i--)
+                {                                           // 텍스트 길이만큼 삭제
                     SendKeys.Send("{BKSP}"); // backspace
+                    Thread.Sleep(100); 
+                }
 
 
                 SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송

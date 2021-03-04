@@ -44,12 +44,18 @@ namespace Mecro_Winform
             this.saveY_Point = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.timerMecro = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.준비중입니다ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.정보ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.준비중입니다ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(594, 196);
+            this.label1.Location = new System.Drawing.Point(495, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 1;
@@ -58,7 +64,7 @@ namespace Mecro_Winform
             // ylabel
             // 
             this.ylabel.AutoSize = true;
-            this.ylabel.Location = new System.Drawing.Point(689, 219);
+            this.ylabel.Location = new System.Drawing.Point(590, 90);
             this.ylabel.Name = "ylabel";
             this.ylabel.Size = new System.Drawing.Size(38, 12);
             this.ylabel.TabIndex = 2;
@@ -67,7 +73,7 @@ namespace Mecro_Winform
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(594, 219);
+            this.label3.Location = new System.Drawing.Point(495, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 12);
             this.label3.TabIndex = 3;
@@ -76,7 +82,7 @@ namespace Mecro_Winform
             // xlabel
             // 
             this.xlabel.AutoSize = true;
-            this.xlabel.Location = new System.Drawing.Point(689, 196);
+            this.xlabel.Location = new System.Drawing.Point(590, 67);
             this.xlabel.Name = "xlabel";
             this.xlabel.Size = new System.Drawing.Size(38, 12);
             this.xlabel.TabIndex = 4;
@@ -84,17 +90,17 @@ namespace Mecro_Winform
             // 
             // stopTimer
             // 
-            this.stopTimer.Location = new System.Drawing.Point(350, 284);
+            this.stopTimer.Location = new System.Drawing.Point(194, 115);
             this.stopTimer.Name = "stopTimer";
             this.stopTimer.Size = new System.Drawing.Size(75, 23);
             this.stopTimer.TabIndex = 5;
-            this.stopTimer.Text = "중지";
+            this.stopTimer.Text = "중지 (F1)";
             this.stopTimer.UseVisualStyleBackColor = true;
             this.stopTimer.Click += new System.EventHandler(this.stopTimer_Click);
             // 
             // textBox
             // 
-            this.textBox.Location = new System.Drawing.Point(178, 216);
+            this.textBox.Location = new System.Drawing.Point(83, 64);
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(197, 21);
             this.textBox.TabIndex = 6;
@@ -102,11 +108,11 @@ namespace Mecro_Winform
             // 
             // exeute
             // 
-            this.exeute.Location = new System.Drawing.Point(252, 284);
+            this.exeute.Location = new System.Drawing.Point(96, 115);
             this.exeute.Name = "exeute";
             this.exeute.Size = new System.Drawing.Size(75, 23);
             this.exeute.TabIndex = 7;
-            this.exeute.Text = "실행";
+            this.exeute.Text = "실행 (F3)";
             this.exeute.UseVisualStyleBackColor = true;
             this.exeute.Click += new System.EventHandler(this.exeute_Click);
             // 
@@ -116,18 +122,18 @@ namespace Mecro_Winform
             // 
             // savePoint
             // 
-            this.savePoint.Location = new System.Drawing.Point(450, 208);
+            this.savePoint.Location = new System.Drawing.Point(341, 115);
             this.savePoint.Name = "savePoint";
-            this.savePoint.Size = new System.Drawing.Size(75, 23);
+            this.savePoint.Size = new System.Drawing.Size(97, 23);
             this.savePoint.TabIndex = 8;
-            this.savePoint.Text = "대상 좌표찍기";
+            this.savePoint.Text = "좌표찍기 (F2)";
             this.savePoint.UseVisualStyleBackColor = true;
             this.savePoint.Click += new System.EventHandler(this.savePoint_Click);
             // 
             // saveX_Point
             // 
             this.saveX_Point.AutoSize = true;
-            this.saveX_Point.Location = new System.Drawing.Point(499, 132);
+            this.saveX_Point.Location = new System.Drawing.Point(400, 64);
             this.saveX_Point.Name = "saveX_Point";
             this.saveX_Point.Size = new System.Drawing.Size(38, 12);
             this.saveX_Point.TabIndex = 12;
@@ -136,7 +142,7 @@ namespace Mecro_Winform
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(430, 155);
+            this.label4.Location = new System.Drawing.Point(331, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 11;
@@ -145,7 +151,7 @@ namespace Mecro_Winform
             // saveY_Point
             // 
             this.saveY_Point.AutoSize = true;
-            this.saveY_Point.Location = new System.Drawing.Point(499, 155);
+            this.saveY_Point.Location = new System.Drawing.Point(400, 87);
             this.saveY_Point.Name = "saveY_Point";
             this.saveY_Point.Size = new System.Drawing.Size(38, 12);
             this.saveY_Point.TabIndex = 10;
@@ -154,7 +160,7 @@ namespace Mecro_Winform
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(430, 132);
+            this.label6.Location = new System.Drawing.Point(331, 64);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 12);
             this.label6.TabIndex = 9;
@@ -164,11 +170,50 @@ namespace Mecro_Winform
             // 
             this.timerMecro.Tick += new System.EventHandler(this.timerMecro_Tick);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.파일ToolStripMenuItem,
+            this.정보ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(676, 24);
+            this.menuStrip1.TabIndex = 13;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 파일ToolStripMenuItem
+            // 
+            this.파일ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.준비중입니다ToolStripMenuItem});
+            this.파일ToolStripMenuItem.Name = "파일ToolStripMenuItem";
+            this.파일ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.파일ToolStripMenuItem.Text = "파일";
+            // 
+            // 준비중입니다ToolStripMenuItem
+            // 
+            this.준비중입니다ToolStripMenuItem.Name = "준비중입니다ToolStripMenuItem";
+            this.준비중입니다ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.준비중입니다ToolStripMenuItem.Text = "준비중입니다";
+            // 
+            // 정보ToolStripMenuItem
+            // 
+            this.정보ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.준비중입니다ToolStripMenuItem1});
+            this.정보ToolStripMenuItem.Name = "정보ToolStripMenuItem";
+            this.정보ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.정보ToolStripMenuItem.Text = "정보";
+            // 
+            // 준비중입니다ToolStripMenuItem1
+            // 
+            this.준비중입니다ToolStripMenuItem1.Name = "준비중입니다ToolStripMenuItem1";
+            this.준비중입니다ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.준비중입니다ToolStripMenuItem1.Text = "준비중입니다";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(676, 281);
             this.Controls.Add(this.saveX_Point);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.saveY_Point);
@@ -181,9 +226,13 @@ namespace Mecro_Winform
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ylabel);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,6 +253,11 @@ namespace Mecro_Winform
         private System.Windows.Forms.Label saveY_Point;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Timer timerMecro;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 준비중입니다ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 정보ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 준비중입니다ToolStripMenuItem1;
     }
 }
 
