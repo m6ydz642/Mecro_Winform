@@ -34,15 +34,16 @@ namespace Mecro_Winform
             this.ylabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.xlabel = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Button();
+            this.stopTimer = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
             this.exeute = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timerX_YPostion = new System.Windows.Forms.Timer(this.components);
             this.savePoint = new System.Windows.Forms.Button();
             this.saveX_Point = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.saveY_Point = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.timerMecro = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -81,15 +82,15 @@ namespace Mecro_Winform
             this.xlabel.TabIndex = 4;
             this.xlabel.Text = "label1";
             // 
-            // timer
+            // stopTimer
             // 
-            this.timer.Location = new System.Drawing.Point(607, 264);
-            this.timer.Name = "timer";
-            this.timer.Size = new System.Drawing.Size(75, 23);
-            this.timer.TabIndex = 5;
-            this.timer.Text = "타이머";
-            this.timer.UseVisualStyleBackColor = true;
-            this.timer.Click += new System.EventHandler(this.timer_Click);
+            this.stopTimer.Location = new System.Drawing.Point(350, 284);
+            this.stopTimer.Name = "stopTimer";
+            this.stopTimer.Size = new System.Drawing.Size(75, 23);
+            this.stopTimer.TabIndex = 5;
+            this.stopTimer.Text = "중지";
+            this.stopTimer.UseVisualStyleBackColor = true;
+            this.stopTimer.Click += new System.EventHandler(this.stopTimer_Click);
             // 
             // textBox
             // 
@@ -109,9 +110,9 @@ namespace Mecro_Winform
             this.exeute.UseVisualStyleBackColor = true;
             this.exeute.Click += new System.EventHandler(this.exeute_Click);
             // 
-            // timer1
+            // timerX_YPostion
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timerX_YPostion.Tick += new System.EventHandler(this.timerX_YPostion_Tick);
             // 
             // savePoint
             // 
@@ -159,6 +160,10 @@ namespace Mecro_Winform
             this.label6.TabIndex = 9;
             this.label6.Text = "X좌표값";
             // 
+            // timerMecro
+            // 
+            this.timerMecro.Tick += new System.EventHandler(this.timerMecro_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -171,7 +176,7 @@ namespace Mecro_Winform
             this.Controls.Add(this.savePoint);
             this.Controls.Add(this.exeute);
             this.Controls.Add(this.textBox);
-            this.Controls.Add(this.timer);
+            this.Controls.Add(this.stopTimer);
             this.Controls.Add(this.xlabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ylabel);
@@ -189,15 +194,16 @@ namespace Mecro_Winform
         private System.Windows.Forms.Label ylabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label xlabel;
-        private System.Windows.Forms.Button timer;
+        private System.Windows.Forms.Button stopTimer;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Button exeute;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timerX_YPostion;
         private System.Windows.Forms.Button savePoint;
         private System.Windows.Forms.Label saveX_Point;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label saveY_Point;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Timer timerMecro;
     }
 }
 

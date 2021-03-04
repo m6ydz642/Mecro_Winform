@@ -22,7 +22,8 @@ namespace Mecro_Winform
         private const uint MOUSEEVENTF_LEFTUP = 0x0004;        // The left button is up.
 
 
-        int time;
+        int timeMecro;
+        int timeX_YPostion;
         public Form1()
         {
             InitializeComponent();
@@ -37,60 +38,45 @@ namespace Mecro_Winform
                 pressF2_Key(); // 마우스 좌표 고정 호출
                 return true;
             }
+
+            if (keyData == (Keys.F3))
+            {
+                MessageBox.Show("매크로가 시작되었습니다");
+                pressF3_Key(); // 마우스 좌표 고정 호출
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData); // 부모 호출
         }
 
+
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            timerX_YPostion.Start();
         }
 
-        private void timer_Click(object sender, EventArgs e) // 자동실행
+        private void stopTimer_Click(object sender, EventArgs e) // 매크로 중지
         {
 
 
-            // this.textBox.Focus();
-           
-
+            timerMecro.Stop(); // 매크로는 중지하고 좌표설정 타이머는 작동
+            timerX_YPostion.Start();
+         
         }
 
         private void exeute_Click(object sender, EventArgs e) // 실행
         {
-            Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
-                        // string으로 변환함   
-            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
-            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
-            SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
-            timer1.Start(); // 실행시 타이머 시작, 좌표 실시간으로 움직이게 할꺼 
+            pressF3_Key();
         }
 
-        private void timer1_Tick(object sender, EventArgs e) // 타이머 작동
+        private void timerX_YPostion_Tick(object sender, EventArgs e) // 좌표 실시간 타이머 작동
         {
             ylabel.Text = Cursor.Position.X.ToString(); // 마우스 좌표 표시
             xlabel.Text = Cursor.Position.Y.ToString();
-            
-            
-            time++; // 작동하면서 ++처리함 
-            // 타이머가 일정시간 이상 되었을때 다른 버튼클릭같은 이벤트 하면 됨
-            Console.WriteLine("timmer : " + time);
+            timeX_YPostion++;
+            Console.WriteLine("timerX_YPostion : " + timeX_YPostion);
 
-            if (time >= 20) // 약 7초 정도
-            {
-                Console.WriteLine(time + " 재시작");
-                time = 0;
-                /*********************************************************/
-                // 좌표에 저장된 값 다시 가져오기
-                Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
-                                                                                                          // string으로 변환함   
-                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
-                mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
-                /*********************************************************/
-                for (int i=0; i<textBox.Text.Length; i++)  // 텍스트 길이만큼 삭제
-                    SendKeys.Send("{BKSP}"); // backspace
-         
-                
-                SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
-            }
+
         }
 
         private void savePoint_Click(object sender, EventArgs e)
@@ -99,12 +85,52 @@ namespace Mecro_Winform
 
         }
 
+        private void pressF3_Key()
+        {
+            timerX_YPostion.Stop(); // 좌표 표시하던 타이머는 멈춤 
+
+            Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
+                                                                                                      // string으로 변환함   
+            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
+            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
+
+            timerMecro.Start(); // 실행시 타이머 시작, 좌표 실시간으로 움직이게 할꺼 
+            SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
+
+        }
         private void pressF2_Key()
         {
            
             saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 고정
             saveY_Point.Text = Cursor.Position.Y.ToString();
            
+        }
+
+        private void timerMecro_Tick(object sender, EventArgs e) // 매크로 시작 타이머
+        {
+            
+
+            timeMecro++; // 매크로가 작동하면서 ++처리함 
+            // 타이머가 일정시간 이상 되었을때 다른 버튼클릭같은 이벤트 하면 됨
+            Console.WriteLine("timeMecro : " + timeMecro);
+
+            if (timeMecro >= 60) // 약 7초 정도
+            {
+                Console.WriteLine(timeMecro + " 재시작");
+                timeMecro = 0;
+                /*********************************************************/
+                // 좌표에 저장된 값 다시 가져오기
+                Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
+                                                                                                          // string으로 변환함   
+                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
+                mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
+                /*********************************************************/
+                for (int i = 0; i < textBox.Text.Length; i++)  // 텍스트 길이만큼 삭제
+                    SendKeys.Send("{BKSP}"); // backspace
+
+
+                SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
+            }
         }
     }
 }
