@@ -26,10 +26,12 @@ namespace Mecro_Winform
         int timeMecro;
         int timeX_YPostion;
 
+        Setting settingPopup = new Setting();
         
         public Form1()
         {
             InitializeComponent();
+          
 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // 단축키 오버라이드
@@ -63,6 +65,7 @@ namespace Mecro_Winform
         private void Form1_Load(object sender, EventArgs e)
         {
             timerX_YPostion.Start();
+         
         }
 
         private void stopTimer_Click(object sender, EventArgs e) // 매크로 중지
@@ -72,7 +75,7 @@ namespace Mecro_Winform
             timerMecro.Stop(); // 매크로는 중지하고 좌표설정 타이머는 작동
             timerX_YPostion.Start();
             MessageBox.Show("매크로가 중단되었습니다");
-   
+            string test = settingPopup.savePointGetter;
         }
 
         private void exeute_Click(object sender, EventArgs e) // 실행

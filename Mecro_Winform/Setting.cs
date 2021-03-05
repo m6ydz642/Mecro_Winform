@@ -16,6 +16,11 @@ namespace Mecro_Winform
 
         TextBox dynamicTextBox;
 
+        public string savePointGetter
+        {
+            get;
+            set;
+        }
         public Setting()
         {
             InitializeComponent();
@@ -33,7 +38,7 @@ namespace Mecro_Winform
             saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 고정
             saveY_Point.Text = Cursor.Position.Y.ToString();
             dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
-
+           
         }
 
         private void makePointArea_Click(object sender, EventArgs e) // 좌표 영역 추가 
@@ -73,13 +78,15 @@ namespace Mecro_Winform
 
         void Setting_Closing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (e.CloseReason == CloseReason.UserClosing) // 사용자가 창 닫을시
             {
-                MessageBox.Show("종료!!");
+                // 종료버튼 누를시 저장할거
+                savePointGetter = dynamicTextBox.Text;
+                MessageBox.Show("내용이 저장됩니다");
             }
                 // Prompt user to save his data
 
-                if (e.CloseReason == CloseReason.WindowsShutDown)
+                if (e.CloseReason == CloseReason.WindowsShutDown) // 운영체제 종료할때쓴다는데 이걸왜 ㅋㅋ;;
                 {
                 MessageBox.Show("종료!!");
                 // Autosave and clear up ressources
