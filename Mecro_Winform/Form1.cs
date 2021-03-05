@@ -156,7 +156,7 @@ namespace Mecro_Winform
         private void stripmenuSetting_Click(object sender, EventArgs e) // 파일 -> 설정
         {
             Setting settingMenu = new Setting();
-            settingMenu.ShowDialog();
+            settingMenu.ShowDialog(); // 설정 호출
         }
     }
 }
