@@ -51,8 +51,8 @@ namespace Mecro_Winform
 
             if (keyData == (Keys.F1))
             {
-                MessageBox.Show("매크로가 중단되었습니다");
-                pressF3_Key(); // 마우스 좌표 고정 호출
+                timerMecro.Stop(); // 매크로는 중지하고 좌표설정 타이머는 작동
+                timerX_YPostion.Start();
                 return true;
             }
 
@@ -82,8 +82,8 @@ namespace Mecro_Winform
 
         private void timerX_YPostion_Tick(object sender, EventArgs e) // 좌표 실시간 타이머 작동
         {
-            ylabel.Text = Cursor.Position.X.ToString(); // 마우스 좌표 표시
-            xlabel.Text = Cursor.Position.Y.ToString();
+            xlabel.Text = Cursor.Position.X.ToString(); // 마우스 좌표 표시
+            ylabel.Text = Cursor.Position.Y.ToString();
             timeX_YPostion++;
             Console.WriteLine("timerX_YPostion : " + timeX_YPostion);
 
