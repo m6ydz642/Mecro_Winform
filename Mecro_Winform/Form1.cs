@@ -49,6 +49,13 @@ namespace Mecro_Winform
                 return true;
             }
 
+            if (keyData == (Keys.F1))
+            {
+                MessageBox.Show("매크로가 중단되었습니다");
+                pressF3_Key(); // 마우스 좌표 고정 호출
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData); // 부모 호출
         }
 
@@ -65,7 +72,7 @@ namespace Mecro_Winform
             timerMecro.Stop(); // 매크로는 중지하고 좌표설정 타이머는 작동
             timerX_YPostion.Start();
             MessageBox.Show("매크로가 중단되었습니다");
-         
+   
         }
 
         private void exeute_Click(object sender, EventArgs e) // 실행
@@ -94,10 +101,7 @@ namespace Mecro_Winform
             timerX_YPostion.Stop(); // 좌표 표시하던 타이머는 멈춤 
 
             // 해당 좌표로 마우스 이동
-            Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
-                                                                                                      // string으로 변환함   
-            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
-            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
+            getMousePointAction();
 
             timerMecro.Start(); // 실행시 타이머 시작, 좌표 실시간으로 움직이게 할꺼 
             
@@ -126,21 +130,27 @@ namespace Mecro_Winform
                 Console.WriteLine(timeMecro + " 재시작");
                 timeMecro = 0;
                 /*********************************************************/
-                // 좌표에 저장된 값 다시 가져오기
-                Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
-                                                                                                          // string으로 변환함   
-                mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
-                mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
+                getMousePointAction();
                 /*********************************************************/
                 for (int i = textBox.Text.Length; i >= 0; i--)
                 {                                           // 텍스트 길이만큼 삭제
-                    SendKeys.Send("{BKSP}"); // backspace
+                    SendKeys.SendWait("{BKSP}"); // backspace
+                    // 회사컴퓨터에서는 send가 안되서 sendwait로 함 (키보드 키 전송 보안문제같음)
                     Thread.Sleep(100); 
                 }
 
 
                 SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
             }
+        }
+
+        private void getMousePointAction()
+        {
+            // 좌표에 저장된 값 다시 가져오기
+            Cursor.Position = new Point(Int32.Parse(saveX_Point.Text), Int32.Parse(saveY_Point.Text));// 지정한 곳으로 커서 보내기
+                                                                                                      // string으로 변환함   
+            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
+            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
         }
     }
 }
