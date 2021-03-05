@@ -150,6 +150,8 @@ namespace Mecro_Winform
             this.Controls.Add(this.label1);
             this.Name = "Setting";
             this.Text = "Setting";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Setting_Closing);
+            this.Load += new System.EventHandler(this.Setting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
