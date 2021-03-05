@@ -25,8 +25,8 @@ namespace Mecro_Winform
 
         int timeMecro;
         int timeX_YPostion;
-      
 
+        
         public Form1()
         {
             InitializeComponent();
@@ -151,6 +151,12 @@ namespace Mecro_Winform
                                                                                                       // string으로 변환함   
             mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
             mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
+        }
+
+        private void stripmenuSetting_Click(object sender, EventArgs e) // 파일 -> 설정
+        {
+            Setting settingMenu = new Setting();
+            settingMenu.ShowDialog();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Mecro_Winform
             this.timerMecro = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.준비중입니다ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stripmenuSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.정보ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.준비중입니다ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -184,16 +184,17 @@ namespace Mecro_Winform
             // 파일ToolStripMenuItem
             // 
             this.파일ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.준비중입니다ToolStripMenuItem});
+            this.stripmenuSetting});
             this.파일ToolStripMenuItem.Name = "파일ToolStripMenuItem";
             this.파일ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.파일ToolStripMenuItem.Text = "파일";
             // 
-            // 준비중입니다ToolStripMenuItem
+            // stripmenuSetting
             // 
-            this.준비중입니다ToolStripMenuItem.Name = "준비중입니다ToolStripMenuItem";
-            this.준비중입니다ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.준비중입니다ToolStripMenuItem.Text = "준비중입니다";
+            this.stripmenuSetting.Name = "stripmenuSetting";
+            this.stripmenuSetting.Size = new System.Drawing.Size(180, 22);
+            this.stripmenuSetting.Text = "설정";
+            this.stripmenuSetting.Click += new System.EventHandler(this.stripmenuSetting_Click);
             // 
             // 정보ToolStripMenuItem
             // 
@@ -206,7 +207,7 @@ namespace Mecro_Winform
             // 준비중입니다ToolStripMenuItem1
             // 
             this.준비중입니다ToolStripMenuItem1.Name = "준비중입니다ToolStripMenuItem1";
-            this.준비중입니다ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.준비중입니다ToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
             this.준비중입니다ToolStripMenuItem1.Text = "준비중입니다";
             // 
             // Form1
@@ -255,7 +256,7 @@ namespace Mecro_Winform
         private System.Windows.Forms.Timer timerMecro;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 파일ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 준비중입니다ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stripmenuSetting;
         private System.Windows.Forms.ToolStripMenuItem 정보ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 준비중입니다ToolStripMenuItem1;
     }
