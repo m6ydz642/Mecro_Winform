@@ -32,6 +32,7 @@ namespace Mecro_Winform
             pressF2_Key(); // 마우스 좌표 고정 함수 호출
         }
 
+       
         private void pressF2_Key()
         {
 
@@ -40,12 +41,24 @@ namespace Mecro_Winform
 
             string value = dynamicTextBox.Name = "dynamicTextBox" + dynamicTextBoxCount;
             // 현재 카운트 되고있는 textbox 순서
-            
-                 //   if (value.Focused)
-                dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
-           
-       }
 
+            // if (dynamicTextBox.Focused) // 좌표추가할때 현재 포커스 여부만 등록되게해야 함
+       
+           
+           this.dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
+   
+            dynamicTextBox.GotFocus += DynamicTextBox_GotFocus;
+
+        }
+
+        private void DynamicTextBox_GotFocus(object sender, EventArgs e)
+        {
+
+            string value2 = dynamicTextBox.Name = "dynamicTextBox" + dynamicTextBoxCount;
+                MessageBox.Show("클릭 : " + value2);
+        }
+
+    
         private void makePointArea_Click(object sender, EventArgs e) // 좌표 영역 추가 
         {
             int seq = 0;
@@ -76,6 +89,7 @@ namespace Mecro_Winform
             
             this.Controls.Add(dynamicTextBox);
             dynamicTextBox.Focus(); // 포커스 주기
+
             dynamicLabel.Name = "label" + dynamicTextBoxCount;
             this.Controls.Add(dynamicLabel);
             
