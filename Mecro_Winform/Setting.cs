@@ -15,6 +15,8 @@ namespace Mecro_Winform
         int dynamicTextBoxCount;
 
         TextBox dynamicTextBox;
+        public Form1 savePointText; // 부모창 선언
+        // 부모창에서 객체를 가르켜 넣을거임
 
         public string savePointGetter
         {
@@ -100,8 +102,19 @@ namespace Mecro_Winform
             if (e.CloseReason == CloseReason.UserClosing) // 사용자가 창 닫을시
             {
                 // 종료버튼 누를시 저장할거
-                savePointGetter = dynamicTextBox.Text;
+                savePointGetter = dynamicTextBox.Text; // setter로 전달
                 MessageBox.Show("내용이 저장됩니다");
+
+                string[] list = new string[dynamicTextBoxCount] ;
+   
+                for (int i = 0; i < dynamicTextBoxCount; i++)
+                {
+                    list[i] = dynamicTextBox.Text;
+        
+                    savePointText.test = list;
+                }
+
+
             }
                 // Prompt user to save his data
 
