@@ -51,6 +51,21 @@ namespace Mecro_Winform
    
             dynamicTextBox.GotFocus += DynamicTextBox_GotFocus;
 
+
+            List<TextBox> my = new List<TextBox>();
+
+            string[] list = new string[dynamicTextBoxCount];
+
+            my.Add(dynamicTextBox);
+            for (int i = 0; i < dynamicTextBoxCount; i++)
+            {
+                list[i] = dynamicTextBox.Text;
+
+           
+            }
+            savePointText.test = my;
+
+
         }
 
         private void DynamicTextBox_GotFocus(object sender, EventArgs e)
@@ -105,15 +120,9 @@ namespace Mecro_Winform
                 savePointGetter = dynamicTextBox.Text; // setter로 전달
                 MessageBox.Show("내용이 저장됩니다");
 
-                string[] list = new string[dynamicTextBoxCount] ;
+               
    
-                for (int i = 0; i < dynamicTextBoxCount; i++)
-                {
-                    list[i] = dynamicTextBox.Text;
-        
-                    savePointText.test = list;
-                }
-
+              
 
             }
                 // Prompt user to save his data

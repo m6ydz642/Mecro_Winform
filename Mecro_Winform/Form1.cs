@@ -26,7 +26,7 @@ namespace Mecro_Winform
         int timeMecro;
         int timeX_YPostion;
 
-    public string[] test
+    public List<TextBox> test
         {
             get;
             set;
