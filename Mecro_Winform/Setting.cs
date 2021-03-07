@@ -37,9 +37,14 @@ namespace Mecro_Winform
 
             saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 고정
             saveY_Point.Text = Cursor.Position.Y.ToString();
-            dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
+
+            string value = dynamicTextBox.Name = "dynamicTextBox" + dynamicTextBoxCount;
+            // 현재 카운트 되고있는 textbox 순서
+            
+                 //   if (value.Focused)
+                dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
            
-        }
+       }
 
         private void makePointArea_Click(object sender, EventArgs e) // 좌표 영역 추가 
         {
@@ -67,7 +72,7 @@ namespace Mecro_Winform
             dynamicTextBox.Location = new Point(35, 70 + dynamicTextBoxCount * 20); // Y좌표가 한칸당 20씩 늘어남
             dynamicLabel.Location = new Point(12, 70 + dynamicTextBoxCount * 20); // Y좌표가 한칸당 20씩 늘어남
                                                                                   // 35는 x, 70은 y 좌표, 동적생성시 70 + (1 * 20) =  90, 70 + (2 * 20) = 110 해서  20씩 증가하면서 아래로 내려감
-            dynamicTextBox.Name = "textbox" + dynamicTextBoxCount;
+            dynamicTextBox.Name = "dynamicTextBox" + dynamicTextBoxCount;
             
             this.Controls.Add(dynamicTextBox);
             dynamicTextBox.Focus(); // 포커스 주기
