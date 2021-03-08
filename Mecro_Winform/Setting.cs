@@ -26,7 +26,7 @@ namespace Mecro_Winform
             set;
             }
 
-        public string savePointGetter
+        public string[]  PopupSavePointGetter// 부모객체로 부터 좌표값을 다시 되돌려 받을 getter, setter 
         {
             get;
             set;
@@ -107,7 +107,7 @@ namespace Mecro_Winform
             if (e.CloseReason == CloseReason.UserClosing) // 사용자가 창 닫을시
             {
                 // 종료버튼 누를시 저장할거
-                savePointGetter = dynamicTextBox.Text;
+               // savePointGetter = dynamicTextBox.Text;
 
                 for (int i = 1; i <= dynamicTextBoxCount; i++)
                 {
@@ -118,8 +118,7 @@ namespace Mecro_Winform
                       }));
                 }
                 savePointPopup.savePointGetter = savetest; // 좌표 내용을 부모폼의 setter로 전달
-           
-                MessageBox.Show("자식창을 닫습니다");
+                
        
             }
                 // Prompt user to save his data
@@ -150,7 +149,39 @@ namespace Mecro_Winform
 
         private void Setting_Load(object sender, EventArgs e)
         {
+            if (savePointPopup.pointListView.Items.Count > 0) // 자식창으로 부터 받은 정보가 있으면
+            {
 
+                // 그대로 다시 띄워줘야 함
+
+                for (int i = 1; i <= savePointPopup.pointListView.Items.Count; i++)
+                {
+                    dynamicTextBox = new TextBox();
+             
+                    dynamicTextBox.Size = new Size(80, 10); // Size가 받는 getter, setter 타입이 생성자임 
+                                                            // x, y 좌표 나눌려고 했었는데 사이즈 딱히 필요없게 됨
+
+
+
+
+                    dynamicTextBox.Location = new Point(35, 70 + dynamicTextBoxCount * 20); // Y좌표가 한칸당 20씩 늘어남
+            
+                                                                                          // 35는 x, 70은 y 좌표, 동적생성시 70 + (1 * 20) =  90, 70 + (2 * 20) = 110 해서  20씩 증가하면서 아래로 내려감
+                    dynamicTextBox.Name = "dynamicTextBox" + dynamicTextBoxCount;
+                    dynamicTextBox.Text = savePointPopup.savePointGetter[i];
+                 
+                    
+                    // 팝업 텍스트 박스에 부모객체로 부터 입력된 getter에서 받아옴 
+                    // savePointPopup은 부모(Form1) 객체임
+
+                    this.Controls.Add(dynamicTextBox);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("정보가 없군요!");
+            }
         }
     }
     
