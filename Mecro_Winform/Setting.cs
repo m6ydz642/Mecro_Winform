@@ -31,6 +31,7 @@ namespace Mecro_Winform
         {
             InitializeComponent();
             dynamicTextBoxCount = 0;
+              savetest = new string[10]; // 생성자에서 저장공간 생성 (if문으로 일정 갯수 넘으면 안되게 하던지 해야 함)
         }
 
         private void savePoint_Click(object sender, EventArgs e)
@@ -88,10 +89,16 @@ namespace Mecro_Winform
             {
                 // 종료버튼 누를시 저장할거
                 savePointGetter = dynamicTextBox.Text;
-               for (int i = 1; i < dynamicTextBoxCount; i++)
+               for (int i = 1; i <= dynamicTextBoxCount; i++)
                 {
-                    MessageBox.Show("save message : " + savetest[i]);
+                    //   test.pointListView.Items.Add(savetest[i]);
+                    test.pointListView.Items.Add(new ListViewItem(new string[]
+                      {
+                        i.ToString(),   savetest[i]
+                      }));
                 }
+                test.savePointGetter = savetest; // 좌표 내용을 부모폼의 setter로 전달
+                MessageBox.Show("자식창을 닫습니다");
                 
             }
                 // Prompt user to save his data
