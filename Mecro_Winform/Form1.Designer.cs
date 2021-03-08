@@ -49,6 +49,9 @@ namespace Mecro_Winform
             this.stripmenuSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.정보ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.준비중입니다ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pointListView = new System.Windows.Forms.ListView();
+            this.saveCountView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.savePointView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -210,11 +213,32 @@ namespace Mecro_Winform
             this.준비중입니다ToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
             this.준비중입니다ToolStripMenuItem1.Text = "준비중입니다";
             // 
+            // pointListView
+            // 
+            this.pointListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.saveCountView,
+            this.savePointView});
+            this.pointListView.HideSelection = false;
+            this.pointListView.Location = new System.Drawing.Point(309, 144);
+            this.pointListView.Name = "pointListView";
+            this.pointListView.Size = new System.Drawing.Size(317, 126);
+            this.pointListView.TabIndex = 14;
+            this.pointListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // saveCountView
+            // 
+            this.saveCountView.Text = "순번";
+            // 
+            // savePointView
+            // 
+            this.savePointView.Text = "좌표";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 281);
+            this.Controls.Add(this.pointListView);
             this.Controls.Add(this.saveX_Point);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.saveY_Point);
@@ -259,6 +283,9 @@ namespace Mecro_Winform
         private System.Windows.Forms.ToolStripMenuItem stripmenuSetting;
         private System.Windows.Forms.ToolStripMenuItem 정보ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 준비중입니다ToolStripMenuItem1;
+        public System.Windows.Forms.ListView pointListView;
+        private System.Windows.Forms.ColumnHeader saveCountView;
+        private System.Windows.Forms.ColumnHeader savePointView;
     }
 }
 

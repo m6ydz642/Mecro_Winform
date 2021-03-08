@@ -26,12 +26,12 @@ namespace Mecro_Winform
         int timeMecro;
         int timeX_YPostion;
 
-    public List<TextBox> test
+
+        public string[] savePointGetter
         {
             get;
             set;
-        } 
-        
+        }
         public Form1()
         {
             InitializeComponent();
@@ -163,9 +163,9 @@ namespace Mecro_Winform
         private void stripmenuSetting_Click(object sender, EventArgs e) // 파일 -> 설정
         {
             Setting settingMenu = new Setting();
-            settingMenu.savePointText = this; // 자식객체의 savePointText변수에 Form1(부모) 객체를 넣음
+            settingMenu.savePointPopup = this; // 자식객체의 Form1 savePointPopup (부모선언) 변수에 Form1(부모) 객체를 넣음
             settingMenu.ShowDialog(); // 설정 팝업 호출
-            settingMenu.ShowDialog(); // 설정 호출
+            
         }
     }
 }

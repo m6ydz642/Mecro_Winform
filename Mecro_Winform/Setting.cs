@@ -15,25 +15,29 @@ namespace Mecro_Winform
         int dynamicTextBoxCount;
 
         TextBox dynamicTextBox;
-        public Form1 savePointText; // 부모창 선언
+
+        public Form1 savePointPopup; // 부모창 선언
         // 부모창에서 객체를 가르켜 넣을거임
+
+      
+        
+         public string[] savetest { // 저장할 배열
+            get;
+            set;
+            }
 
         public string savePointGetter
         {
             get;
             set;
         }
-        
-         public string[] savetest { // 저장할 배열
-            get;
-            set;
-            }
-            
+
+      
         public Setting()
         {
             InitializeComponent();
             dynamicTextBoxCount = 0;
-              savetest = new string[10]; // 생성자에서 저장공간 생성 (if문으로 일정 갯수 넘으면 안되게 하던지 해야 함)
+            savetest = new string[10]; // 생성자에서 저장공간 생성 (if문으로 일정 갯수 넘으면 안되게 하던지 해야 함)
         }
 
         private void savePoint_Click(object sender, EventArgs e)
@@ -48,31 +52,10 @@ namespace Mecro_Winform
             saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 고정
             saveY_Point.Text = Cursor.Position.Y.ToString();
 
-            string value = dynamicTextBox.Name = "dynamicTextBox" + dynamicTextBoxCount;
-            // 현재 카운트 되고있는 textbox 순서
+            dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
 
-            // if (dynamicTextBox.Focused) // 좌표추가할때 현재 포커스 여부만 등록되게해야 함
-       
-           
-           this.dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
-   
-            dynamicTextBox.GotFocus += DynamicTextBox_GotFocus;
-
-
-            List<TextBox> my = new List<TextBox>();
-
-            string[] list = new string[dynamicTextBoxCount];
-
-            my.Add(dynamicTextBox);
-            for (int i = 0; i < dynamicTextBoxCount; i++)
-            {
-                list[i] = dynamicTextBox.Text;
-
-           
-            }
-            savePointText.test = my;
-
-
+            savetest[dynamicTextBoxCount] = dynamicTextBox.Text; // 각 자리수 배열대로 순번, 좌표 넣기
+            // (나중에 리스트뷰 넣을 용도)
         }
 
         private void DynamicTextBox_GotFocus(object sender, EventArgs e)
@@ -124,19 +107,20 @@ namespace Mecro_Winform
             if (e.CloseReason == CloseReason.UserClosing) // 사용자가 창 닫을시
             {
                 // 종료버튼 누를시 저장할거
+                savePointGetter = dynamicTextBox.Text;
 
                 for (int i = 1; i <= dynamicTextBoxCount; i++)
                 {
                     //   test.pointListView.Items.Add(savetest[i]);
-                    test.pointListView.Items.Add(new ListViewItem(new string[]
+                    savePointPopup.pointListView.Items.Add(new ListViewItem(new string[]
                       {
                         i.ToString(),   savetest[i]
                       }));
                 }
-                test.savePointGetter = savetest; // 좌표 내용을 부모폼의 setter로 전달
+                savePointPopup.savePointGetter = savetest; // 좌표 내용을 부모폼의 setter로 전달
+           
                 MessageBox.Show("자식창을 닫습니다");
-                savePointGetter = dynamicTextBox.Text;
-                MessageBox.Show("내용이 저장됩니다");
+       
             }
                 // Prompt user to save his data
 
