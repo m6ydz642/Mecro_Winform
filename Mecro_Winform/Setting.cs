@@ -21,6 +21,12 @@ namespace Mecro_Winform
             get;
             set;
         }
+        
+         public string[] savetest { // 저장할 배열
+            get;
+            set;
+            }
+            
         public Setting()
         {
             InitializeComponent();
