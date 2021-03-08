@@ -35,7 +35,7 @@ namespace Mecro_Winform
         public Form1()
         {
             InitializeComponent();
-          
+           pointListView.View = View.Details; // 디자인에 디테일 뷰 추가
 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // 단축키 오버라이드
@@ -163,12 +163,9 @@ namespace Mecro_Winform
         private void stripmenuSetting_Click(object sender, EventArgs e) // 파일 -> 설정
         {
             Setting settingMenu = new Setting();
-         
             settingMenu.savePointText = this; // 자식객체의 savePointText변수에 Form1(부모) 객체를 넣음
             settingMenu.ShowDialog(); // 설정 팝업 호출
-
-            // 자식 객체를 먼저 가르켜서 값을 넣어줘고 팝업을 호출해야 됨
-            // 안그러면 자식객체 값이 안넘어옴
+            settingMenu.ShowDialog(); // 설정 호출
         }
     }
 }
