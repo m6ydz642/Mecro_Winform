@@ -82,7 +82,11 @@ namespace Mecro_Winform
             {
                 // 종료버튼 누를시 저장할거
                 savePointGetter = dynamicTextBox.Text;
-                MessageBox.Show("내용이 저장됩니다");
+               for (int i = 1; i < dynamicTextBoxCount; i++)
+                {
+                    MessageBox.Show("save message : " + savetest[i]);
+                }
+                
             }
                 // Prompt user to save his data
 
