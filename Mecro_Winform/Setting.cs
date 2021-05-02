@@ -16,46 +16,48 @@ namespace Mecro_Winform
 
         TextBox dynamicTextBox;
 
-        public Form1 savePointPopup; // 부모창 선언
+        public Form1 MainForm; // 부모창 선언
         // 부모창에서 객체를 가르켜 넣을거임
 
       
-        
-         public string[] savetest { // 저장할 배열
-            get;
-            set;
-            }
 
-        public string[]  PopupSavePointGetter// 부모객체로 부터 좌표값을 다시 되돌려 받을 getter, setter 
+
+        public string[] SavePopupPoint // 부모객체로 부터 좌표값을 다시 되돌려 받을 getter, setter 
         {
             get;
             set;
         }
 
-      
+
         public Setting()
         {
             InitializeComponent();
             dynamicTextBoxCount = 0;
-            savetest = new string[10]; // 생성자에서 저장공간 생성 (if문으로 일정 갯수 넘으면 안되게 하던지 해야 함)
+            SavePopupPoint = new string[10];
+
         }
 
         private void savePoint_Click(object sender, EventArgs e)
         {
-            pressF2_Key(); // 마우스 좌표 고정 함수 호출
+            pressF2_Key(); // 마우스 좌표 찍기 함수 호출
         }
 
        
         private void pressF2_Key()
         {
 
-            saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 고정
+            saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 가져와 담음
             saveY_Point.Text = Cursor.Position.Y.ToString();
 
             dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
 
-            savetest[dynamicTextBoxCount] = dynamicTextBox.Text; // 각 자리수 배열대로 순번, 좌표 넣기
-            // (나중에 리스트뷰 넣을 용도)
+            SavePopupPoint[dynamicTextBoxCount] = dynamicTextBox.Text; // 각 자리수 배열대로 순번, 좌표 넣기
+                                                                 // (나중에 리스트뷰 넣을 용도)
+          /*  for (int i=0; i< MainForm.pointListView.Items.Count; i++)
+            {
+                MainForm.savePointGetter[i] = savetest[i];
+            }*/
+           
         }
 
         private void DynamicTextBox_GotFocus(object sender, EventArgs e)
@@ -112,23 +114,24 @@ namespace Mecro_Winform
                 for (int i = 1; i <= dynamicTextBoxCount; i++)
                 {
                     //   test.pointListView.Items.Add(savetest[i]);
-                    savePointPopup.pointListView.Items.Add(new ListViewItem(new string[]
+                    MainForm.pointListView.Items.Add(new ListViewItem(new string[]
                       {
-                        i.ToString(),   savetest[i]
+                        i.ToString(),   SavePopupPoint[i]
+                       
                       }));
+                  //  SettingFormTemp[i] = savetest[i];
                 }
-           /*     if (dynamicTextBox.Text.Length >= 0)
-                {
-                    for (int i = 0; i <= dynamicTextBox.Text.Length; i++)
-                    {
-                        dynamicTextBox.Name = "dynamicTextBox" + i;
-                        dynamicTextBox.Text = "test";
-                    }
-                }*/
+                /*     if (dynamicTextBox.Text.Length >= 0)
+                     {
+                         for (int i = 0; i <= dynamicTextBox.Text.Length; i++)
+                         {
+                             dynamicTextBox.Name = "dynamicTextBox" + i;
+                             dynamicTextBox.Text = "test";
+                         }
+                     }*/
 
-                savePointPopup.savePointGetter = savetest; // 좌표 내용을 부모폼의 setter로 전달
-              
-       
+                MainForm.SaveMainFormNumber = SavePopupPoint; // 좌표 내용을 부모폼의 setter로 전달
+
             }
                 // Prompt user to save his data
 
@@ -143,12 +146,12 @@ namespace Mecro_Winform
 
         private void Setting_Load(object sender, EventArgs e)
         {
-            if (savePointPopup.pointListView.Items.Count > 0) // 부모창으로 부터 받은 정보가 있으면
+            if (MainForm.pointListView.Items.Count > 0) // listview에 들어있는 정보가 있으면
             {
 
                 // 그대로 다시 띄워줘야 함
 
-                for (int i = 1; i <= savePointPopup.pointListView.Items.Count; i++)
+                for (int i = 1; i <= MainForm.pointListView.Items.Count; i++)
                 {
                     dynamicTextBox = new TextBox();
              
@@ -159,13 +162,13 @@ namespace Mecro_Winform
             
                     // 35는 x, 70은 y 좌표, 동적생성시 70 + (1 * 20) =  90, 70 + (2 * 20) = 110 해서  20씩 증가하면서 아래로 내려감
                     dynamicTextBox.Name = "dynamicTextBox" + i;
-                    dynamicTextBox.Text = savePointPopup.savePointGetter[i];
+                    dynamicTextBox.Text = MainForm.SaveMainFormNumber[i];
 
 
-                    // 팝업 텍스트 박스에 부모객체로 부터 입력된 getter에서 받아옴 
-                    // savePointPopup은 부모(Form1) 객체임
-
+                    // 팝업 텍스트 박스에 메인으로 부터 입력된 getter에서 받아옴 
+            
                     this.Controls.Add(dynamicTextBox);
+
                 }
 
             }
