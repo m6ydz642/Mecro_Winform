@@ -93,7 +93,7 @@ namespace Mecro_Winform
             // 
             // stopTimer
             // 
-            this.stopTimer.Location = new System.Drawing.Point(194, 115);
+            this.stopTimer.Location = new System.Drawing.Point(205, 115);
             this.stopTimer.Name = "stopTimer";
             this.stopTimer.Size = new System.Drawing.Size(75, 23);
             this.stopTimer.TabIndex = 5;
@@ -111,7 +111,7 @@ namespace Mecro_Winform
             // 
             // exeute
             // 
-            this.exeute.Location = new System.Drawing.Point(96, 115);
+            this.exeute.Location = new System.Drawing.Point(83, 115);
             this.exeute.Name = "exeute";
             this.exeute.Size = new System.Drawing.Size(75, 23);
             this.exeute.TabIndex = 7;
@@ -125,7 +125,7 @@ namespace Mecro_Winform
             // 
             // savePoint
             // 
-            this.savePoint.Location = new System.Drawing.Point(341, 115);
+            this.savePoint.Location = new System.Drawing.Point(333, 115);
             this.savePoint.Name = "savePoint";
             this.savePoint.Size = new System.Drawing.Size(97, 23);
             this.savePoint.TabIndex = 8;
@@ -219,9 +219,9 @@ namespace Mecro_Winform
             this.saveCountView,
             this.savePointView});
             this.pointListView.HideSelection = false;
-            this.pointListView.Location = new System.Drawing.Point(309, 144);
+            this.pointListView.Location = new System.Drawing.Point(333, 144);
             this.pointListView.Name = "pointListView";
-            this.pointListView.Size = new System.Drawing.Size(317, 126);
+            this.pointListView.Size = new System.Drawing.Size(293, 126);
             this.pointListView.TabIndex = 14;
             this.pointListView.UseCompatibleStateImageBehavior = false;
             // 

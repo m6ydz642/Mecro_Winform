@@ -167,8 +167,9 @@ namespace Mecro_Winform
                 settingMenu.savePointPopup = this; // 자식객체의 Form1 savePointPopup (부모선언) 변수에 Form1(부모) 객체를 넣음
                 settingMenu.ShowDialog(); // 설정 팝업 호출
 
+                
                 settingMenu.PopupSavePointGetter = savePointGetter; // 자식객체로 부터 전달받은 배열값을 다시 자식으로 돌려보냄
-        
+      
         }
     }
 }
