@@ -163,21 +163,10 @@ namespace Mecro_Winform
             
                     // 35는 x, 70은 y 좌표, 동적생성시 70 + (1 * 20) =  90, 70 + (2 * 20) = 110 해서  20씩 증가하면서 아래로 내려감
                     dynamicTextBox.Name = "dynamicTextBox" + i;
-                    //  dynamicTextBox.Text = MainForm.SaveMainFormNumber[i];
 
                     dynamicTextBox.Text = MainForm.pointListView.Items[j].SubItems[1].Text; // SubItems[1]의 1은 2번째 컬럼 부분임 (순서, 좌표) 중 좌표
                     j++;
-
-                    // 팝업 텍스트 박스에 메인으로 부터 입력된 getter에서 받아옴 
-
                     this.Controls.Add(dynamicTextBox);
-
-                    // int? length = MainForm.pointListView.Items?.Count ?? 0; // null이면 int는 0을 가짐
-
-                       
-                
-//                    listview[j] = MainForm.pointListView.Items[j].SubItems[1].Text; // SubItems[1]의 1은 2번째 컬럼 부분임 (순서, 좌표) 중 좌표
-                        
 
                 }
 

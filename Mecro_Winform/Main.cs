@@ -27,11 +27,18 @@ namespace Mecro_Winform
         int timeX_YPostion;
 
         Setting SettingMenu;
-/*        public string[] SaveMainFormNumber
+        /*        public string[] SaveMainFormNumber
+                {
+                    get;
+                    set;
+                }*/
+        public string[] ExcutePosition
         {
             get;
             set;
-        }*/
+
+
+        }
 
 
         public delegate void TextEventHandler(string text);
@@ -164,11 +171,27 @@ namespace Mecro_Winform
         private void stripmenuSetting_Click(object sender, EventArgs e) // 파일 -> 설정
         {
                 SettingMenu.MainForm = this; // 자식객체의 Form1 savePointPopup (부모선언) 변수에 Form1(부모) 객체를 넣음 (Setting에서 다시 객체생성을 하지않아도 됨)
-             
-                SettingMenu.ShowDialog(); // 설정 팝업 호출
-              // SettingMenu.SavePopupPoint = SaveMainFormNumber; // 자식객체로 부터 전달받은 배열값을 다시 자식으로 돌려보냄
+                SettingMenu.ShowDialog(); // 설정창 팝업 호출
+        }
+   
+        private void ExcuteSavePoint_Click(object sender, EventArgs e) // point listview 에 저장된 좌표 실행
+        {
+            int length = pointListView.Items.Count;
+            ExcutePosition = new string[length];
 
-      
+            if (length > 0)
+            {
+                    for (int i = 0; i < length; i++) {
+                        ExcutePosition[i] = pointListView.Items[i].SubItems[1].Text; // SubItems[1]의 1은 2번째 컬럼 부분임 (순서, 좌표) 중 좌표
+
+                    }
+
+            }
+            else
+            {
+                MessageBox.Show("좌표를 입력해주세요");
+            }
+
         }
     }
 }

@@ -52,6 +52,7 @@ namespace Mecro_Winform
             this.pointListView = new System.Windows.Forms.ListView();
             this.saveCountView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.savePointView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ExcuteSavePoint = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -233,11 +234,22 @@ namespace Mecro_Winform
             // 
             this.savePointView.Text = "좌표";
             // 
-            // Form1
+            // ExcuteSavePoint
+            // 
+            this.ExcuteSavePoint.Location = new System.Drawing.Point(218, 197);
+            this.ExcuteSavePoint.Name = "ExcuteSavePoint";
+            this.ExcuteSavePoint.Size = new System.Drawing.Size(88, 23);
+            this.ExcuteSavePoint.TabIndex = 15;
+            this.ExcuteSavePoint.Text = "저장좌표실행";
+            this.ExcuteSavePoint.UseVisualStyleBackColor = true;
+            this.ExcuteSavePoint.Click += new System.EventHandler(this.ExcuteSavePoint_Click);
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 281);
+            this.Controls.Add(this.ExcuteSavePoint);
             this.Controls.Add(this.pointListView);
             this.Controls.Add(this.saveX_Point);
             this.Controls.Add(this.label4);
@@ -253,7 +265,7 @@ namespace Mecro_Winform
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -286,6 +298,7 @@ namespace Mecro_Winform
         public System.Windows.Forms.ListView pointListView;
         private System.Windows.Forms.ColumnHeader saveCountView;
         private System.Windows.Forms.ColumnHeader savePointView;
+        private System.Windows.Forms.Button ExcuteSavePoint;
     }
 }
 
