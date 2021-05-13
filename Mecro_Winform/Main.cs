@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Mecro_Winform
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
 
         // 마우스 이벤트 dll 
@@ -27,14 +27,18 @@ namespace Mecro_Winform
         int timeX_YPostion;
 
         Setting SettingMenu;
-        public string[] SaveMainFormNumber
+/*        public string[] SaveMainFormNumber
         {
             get;
             set;
-        }
+        }*/
 
 
-        public Form1()
+        public delegate void TextEventHandler(string text);
+        public event TextEventHandler WriteTextEvent; //Setting 폼에서 전달할 이벤트 핸들러
+
+
+        public Main()
         {
            InitializeComponent();
            pointListView.View = View.Details; // 디자인에 디테일 뷰 추가
@@ -96,8 +100,6 @@ namespace Mecro_Winform
             ylabel.Text = Cursor.Position.Y.ToString();
             timeX_YPostion++;
             Console.WriteLine("timerX_YPostion : " + timeX_YPostion);
-
-
         }
 
         private void savePoint_Click(object sender, EventArgs e)
@@ -129,8 +131,6 @@ namespace Mecro_Winform
 
         private void timerMecro_Tick(object sender, EventArgs e) // 매크로 시작 타이머
         {
-            
-
             timeMecro++; // 매크로가 작동하면서 ++처리함 
             // 타이머가 일정시간 이상 되었을때 다른 버튼클릭같은 이벤트 하면 됨
             Console.WriteLine("timeMecro : " + timeMecro);
@@ -148,8 +148,6 @@ namespace Mecro_Winform
                     // 회사컴퓨터에서는 send가 안되서 sendwait로 함 (키보드 키 전송 보안문제같음)
                     Thread.Sleep(100); 
                 }
-
-
                 SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
             }
         }
@@ -165,11 +163,10 @@ namespace Mecro_Winform
 
         private void stripmenuSetting_Click(object sender, EventArgs e) // 파일 -> 설정
         {
-
-            
-                SettingMenu.MainForm = this; // 자식객체의 Form1 savePointPopup (부모선언) 변수에 Form1(부모) 객체를 넣음
+                SettingMenu.MainForm = this; // 자식객체의 Form1 savePointPopup (부모선언) 변수에 Form1(부모) 객체를 넣음 (Setting에서 다시 객체생성을 하지않아도 됨)
+             
                 SettingMenu.ShowDialog(); // 설정 팝업 호출
-                SettingMenu.SavePopupPoint = SaveMainFormNumber; // 자식객체로 부터 전달받은 배열값을 다시 자식으로 돌려보냄
+              // SettingMenu.SavePopupPoint = SaveMainFormNumber; // 자식객체로 부터 전달받은 배열값을 다시 자식으로 돌려보냄
 
       
         }
