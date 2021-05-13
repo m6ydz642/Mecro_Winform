@@ -183,7 +183,9 @@ namespace Mecro_Winform
             if (timmerbox.Text.Equals("") || timmerbox.Text.Equals(_message))
             {
                 MessageBox.Show("시간초를 입력해주세요");
-                //  timmerbox.Focus += new EventHandler(timmerbox_Enter);
+                // timmerbox.GotFocus += new EventHandler(timmerbox_Enter);
+                timmerbox.Focus(); //     private void timmerbox_Enter(object sender, EventArgs e)를 호출함
+
             }
             else
             {
@@ -248,16 +250,17 @@ namespace Mecro_Winform
 
         private void ClickTimmerTextBox(object sender, MouseEventArgs e)
         {
-            timmerbox.Text = "";
+            if (timmerbox.Text.Equals("") || timmerbox.Equals(_message))
+                timmerbox.Text = "";
         }
 
         private void timmerbox_Enter(object sender, EventArgs e)
         {
-
+            timmerbox.Text = "";
         }
     }
 
-    public class ThresholdReachedEventArgs : EventArgs
+    public class ThresholdReachedEventArgs : EventArgs // 조만간 값 전달 목적 연습으로 사용할 이벤트 핸들러 
     {
         public int Threshold { get; set; }
         public DateTime TimeReached { get; set; }
