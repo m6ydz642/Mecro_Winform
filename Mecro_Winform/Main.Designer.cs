@@ -53,13 +53,15 @@ namespace Mecro_Winform
             this.saveCountView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.savePointView = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ExcuteSavePoint = new System.Windows.Forms.Button();
+            this.timmerbox = new System.Windows.Forms.TextBox();
+            this.labeltimmer = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(493, 64);
+            this.label1.Location = new System.Drawing.Point(682, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 1;
@@ -68,7 +70,7 @@ namespace Mecro_Winform
             // ylabel
             // 
             this.ylabel.AutoSize = true;
-            this.ylabel.Location = new System.Drawing.Point(588, 87);
+            this.ylabel.Location = new System.Drawing.Point(777, 87);
             this.ylabel.Name = "ylabel";
             this.ylabel.Size = new System.Drawing.Size(38, 12);
             this.ylabel.TabIndex = 2;
@@ -77,7 +79,7 @@ namespace Mecro_Winform
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(493, 87);
+            this.label3.Location = new System.Drawing.Point(682, 87);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 12);
             this.label3.TabIndex = 3;
@@ -86,7 +88,7 @@ namespace Mecro_Winform
             // xlabel
             // 
             this.xlabel.AutoSize = true;
-            this.xlabel.Location = new System.Drawing.Point(588, 64);
+            this.xlabel.Location = new System.Drawing.Point(777, 64);
             this.xlabel.Name = "xlabel";
             this.xlabel.Size = new System.Drawing.Size(38, 12);
             this.xlabel.TabIndex = 4;
@@ -94,7 +96,7 @@ namespace Mecro_Winform
             // 
             // stopTimer
             // 
-            this.stopTimer.Location = new System.Drawing.Point(205, 115);
+            this.stopTimer.Location = new System.Drawing.Point(135, 115);
             this.stopTimer.Name = "stopTimer";
             this.stopTimer.Size = new System.Drawing.Size(75, 23);
             this.stopTimer.TabIndex = 5;
@@ -112,7 +114,7 @@ namespace Mecro_Winform
             // 
             // exeute
             // 
-            this.exeute.Location = new System.Drawing.Point(83, 115);
+            this.exeute.Location = new System.Drawing.Point(54, 115);
             this.exeute.Name = "exeute";
             this.exeute.Size = new System.Drawing.Size(75, 23);
             this.exeute.TabIndex = 7;
@@ -126,7 +128,7 @@ namespace Mecro_Winform
             // 
             // savePoint
             // 
-            this.savePoint.Location = new System.Drawing.Point(333, 115);
+            this.savePoint.Location = new System.Drawing.Point(218, 115);
             this.savePoint.Name = "savePoint";
             this.savePoint.Size = new System.Drawing.Size(97, 23);
             this.savePoint.TabIndex = 8;
@@ -137,7 +139,7 @@ namespace Mecro_Winform
             // saveX_Point
             // 
             this.saveX_Point.AutoSize = true;
-            this.saveX_Point.Location = new System.Drawing.Point(400, 64);
+            this.saveX_Point.Location = new System.Drawing.Point(589, 64);
             this.saveX_Point.Name = "saveX_Point";
             this.saveX_Point.Size = new System.Drawing.Size(38, 12);
             this.saveX_Point.TabIndex = 12;
@@ -146,7 +148,7 @@ namespace Mecro_Winform
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(331, 87);
+            this.label4.Location = new System.Drawing.Point(520, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 11;
@@ -155,7 +157,7 @@ namespace Mecro_Winform
             // saveY_Point
             // 
             this.saveY_Point.AutoSize = true;
-            this.saveY_Point.Location = new System.Drawing.Point(400, 87);
+            this.saveY_Point.Location = new System.Drawing.Point(589, 87);
             this.saveY_Point.Name = "saveY_Point";
             this.saveY_Point.Size = new System.Drawing.Size(38, 12);
             this.saveY_Point.TabIndex = 10;
@@ -164,7 +166,7 @@ namespace Mecro_Winform
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(331, 64);
+            this.label6.Location = new System.Drawing.Point(520, 64);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 12);
             this.label6.TabIndex = 9;
@@ -181,7 +183,7 @@ namespace Mecro_Winform
             this.정보ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(676, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(837, 24);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -196,7 +198,7 @@ namespace Mecro_Winform
             // stripmenuSetting
             // 
             this.stripmenuSetting.Name = "stripmenuSetting";
-            this.stripmenuSetting.Size = new System.Drawing.Size(180, 22);
+            this.stripmenuSetting.Size = new System.Drawing.Size(98, 22);
             this.stripmenuSetting.Text = "설정";
             this.stripmenuSetting.Click += new System.EventHandler(this.stripmenuSetting_Click);
             // 
@@ -220,7 +222,7 @@ namespace Mecro_Winform
             this.saveCountView,
             this.savePointView});
             this.pointListView.HideSelection = false;
-            this.pointListView.Location = new System.Drawing.Point(333, 144);
+            this.pointListView.Location = new System.Drawing.Point(522, 144);
             this.pointListView.Name = "pointListView";
             this.pointListView.Size = new System.Drawing.Size(293, 126);
             this.pointListView.TabIndex = 14;
@@ -236,19 +238,39 @@ namespace Mecro_Winform
             // 
             // ExcuteSavePoint
             // 
-            this.ExcuteSavePoint.Location = new System.Drawing.Point(218, 197);
+            this.ExcuteSavePoint.Location = new System.Drawing.Point(380, 144);
             this.ExcuteSavePoint.Name = "ExcuteSavePoint";
-            this.ExcuteSavePoint.Size = new System.Drawing.Size(88, 23);
+            this.ExcuteSavePoint.Size = new System.Drawing.Size(126, 23);
             this.ExcuteSavePoint.TabIndex = 15;
-            this.ExcuteSavePoint.Text = "저장좌표실행";
+            this.ExcuteSavePoint.Text = "저장좌표실행 (F2)";
             this.ExcuteSavePoint.UseVisualStyleBackColor = true;
             this.ExcuteSavePoint.Click += new System.EventHandler(this.ExcuteSavePoint_Click);
+            // 
+            // timmerbox
+            // 
+            this.timmerbox.Location = new System.Drawing.Point(380, 209);
+            this.timmerbox.Name = "timmerbox";
+            this.timmerbox.Size = new System.Drawing.Size(126, 21);
+            this.timmerbox.TabIndex = 16;
+            this.timmerbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ClickTimmerTextBox);
+            this.timmerbox.Enter += new System.EventHandler(this.timmerbox_Enter);
+            // 
+            // labeltimmer
+            // 
+            this.labeltimmer.AutoSize = true;
+            this.labeltimmer.Location = new System.Drawing.Point(378, 182);
+            this.labeltimmer.Name = "labeltimmer";
+            this.labeltimmer.Size = new System.Drawing.Size(45, 12);
+            this.labeltimmer.TabIndex = 17;
+            this.labeltimmer.Text = "대기 초";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 281);
+            this.ClientSize = new System.Drawing.Size(837, 370);
+            this.Controls.Add(this.labeltimmer);
+            this.Controls.Add(this.timmerbox);
             this.Controls.Add(this.ExcuteSavePoint);
             this.Controls.Add(this.pointListView);
             this.Controls.Add(this.saveX_Point);
@@ -299,6 +321,8 @@ namespace Mecro_Winform
         private System.Windows.Forms.ColumnHeader saveCountView;
         private System.Windows.Forms.ColumnHeader savePointView;
         private System.Windows.Forms.Button ExcuteSavePoint;
+        private System.Windows.Forms.TextBox timmerbox;
+        private System.Windows.Forms.Label labeltimmer;
     }
 }
 

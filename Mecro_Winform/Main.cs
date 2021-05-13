@@ -25,6 +25,7 @@ namespace Mecro_Winform
 
         int timeMecro;
         int timeX_YPostion;
+        string _message;
 
         Setting SettingMenu;
         /*        public string[] SaveMainFormNumber
@@ -50,6 +51,8 @@ namespace Mecro_Winform
            InitializeComponent();
            pointListView.View = View.Details; // 디자인에 디테일 뷰 추가
            SettingMenu = new Setting();
+            _message = "시간초를 입력해주세요";
+
 
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // 단축키 오버라이드
@@ -57,7 +60,7 @@ namespace Mecro_Winform
             // if  (keyData == (Keys.Control | Keys.F))
             if  (keyData == (Keys.F2))
             {
-                MessageBox.Show("좌표가 설정되었습니다");
+                MessageBox.Show("실시간 좌표가 설정되었습니다");
                 pressF2_Key(); // 마우스 좌표 고정 호출
                 return true;
             }
@@ -83,7 +86,7 @@ namespace Mecro_Winform
         private void Form1_Load(object sender, EventArgs e)
         {
             timerX_YPostion.Start();
-         
+            timmerbox.Text = _message;
         }
 
         private void stopTimer_Click(object sender, EventArgs e) // 매크로 중지
@@ -174,6 +177,53 @@ namespace Mecro_Winform
                 SettingMenu.ShowDialog(); // 설정창 팝업 호출
         }
    
+        private void ExcueteSavePointMecro() // 저장된 좌표와 시간초로 타이머 실행
+        {
+             string inputtimmer = timmerbox.Text;
+            if (timmerbox.Text.Equals("") || timmerbox.Text.Equals(_message))
+            {
+                MessageBox.Show("시간초를 입력해주세요");
+                //  timmerbox.Focus += new EventHandler(timmerbox_Enter);
+            }
+            else
+            {
+                MessageBox.Show("매크로를 시작합니다!");
+             
+                timerX_YPostion.Stop();// 기존 좌표찍는 타이머는 중단 (콘솔 표시 + 좌표실시간 타이머)
+
+                int count = 1;
+
+                TimeSpan time = TimeSpan.FromSeconds(Int32.Parse(inputtimmer));
+                // 문자들어올경우 예외처리 함수로 할것
+
+                bool status = true;
+                while (status)
+                {
+                    for (int i = 0; i < ExcutePosition.Length; i++)
+                    {
+                        Thread.Sleep(time);
+                        Console.WriteLine("저장좌표 시작 : " + count++);
+                        Console.WriteLine("저장좌표  : " + ExcutePosition[i]);
+
+                        if (i == ExcutePosition.Length)
+                        {
+                            i = 0;
+                        }
+
+                        if (count == 10)
+                        {
+                            MessageBox.Show("매크로를 자동정지 합니다");
+                            status = false;
+                        }
+
+                    }
+                }
+            
+
+            }
+
+
+        }
         private void ExcuteSavePoint_Click(object sender, EventArgs e) // point listview 에 저장된 좌표 실행
         {
             int length = pointListView.Items.Count;
@@ -185,7 +235,7 @@ namespace Mecro_Winform
                         ExcutePosition[i] = pointListView.Items[i].SubItems[1].Text; // SubItems[1]의 1은 2번째 컬럼 부분임 (순서, 좌표) 중 좌표
 
                     }
-
+                ExcueteSavePointMecro();
             }
             else
             {
@@ -193,5 +243,24 @@ namespace Mecro_Winform
             }
 
         }
+
+       
+
+        private void ClickTimmerTextBox(object sender, MouseEventArgs e)
+        {
+            timmerbox.Text = "";
+        }
+
+        private void timmerbox_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
+
+    public class ThresholdReachedEventArgs : EventArgs
+    {
+        public int Threshold { get; set; }
+        public DateTime TimeReached { get; set; }
+    }
+
 }
