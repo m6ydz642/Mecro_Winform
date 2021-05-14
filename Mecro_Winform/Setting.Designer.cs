@@ -125,11 +125,11 @@ namespace Mecro_Winform
             // 
             // makePointArea
             // 
-            this.makePointArea.Location = new System.Drawing.Point(393, 80);
+            this.makePointArea.Location = new System.Drawing.Point(343, 81);
             this.makePointArea.Name = "makePointArea";
-            this.makePointArea.Size = new System.Drawing.Size(75, 23);
+            this.makePointArea.Size = new System.Drawing.Size(105, 23);
             this.makePointArea.TabIndex = 17;
-            this.makePointArea.Text = "좌표순추가";
+            this.makePointArea.Text = "박스 추가(F3)";
             this.makePointArea.UseVisualStyleBackColor = true;
             this.makePointArea.Click += new System.EventHandler(this.makePointArea_Click);
             // 

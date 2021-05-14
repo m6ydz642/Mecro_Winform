@@ -21,6 +21,22 @@ namespace Mecro_Winform
 
 
         int total;
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // 단축키 오버라이드
+        {
+            // if  (keyData == (Keys.Control | Keys.F))
+            if (keyData == (Keys.F2))
+            {
+                pressF2_Key(); // 마우스 표찍기 호출
+                return true;
+            }
+            if (keyData == (Keys.F3))
+            {
+                addPoint(); // 동적 박스 생성
+                return true;
+            }
+        
+            return base.ProcessCmdKey(ref msg, keyData); // 부모 호출
+        }
 
         public string[] SavePopupPoint // 부모객체로 부터 좌표값을 다시 되돌려 받을 getter, setter 
         {
@@ -46,18 +62,24 @@ namespace Mecro_Winform
        
         private void pressF2_Key()
         {
-
-            saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 가져와 담음
-            saveY_Point.Text = Cursor.Position.Y.ToString();
-
-            dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
-
-            SavePopupPoint[dynamicTextBoxCount] = dynamicTextBox.Text; // 각 자리수 배열대로 순번, 좌표 넣기
-                                                                 // (나중에 리스트뷰 넣을 용도)
-          /*  for (int i=0; i< MainForm.pointListView.Items.Count; i++)
+            if (dynamicTextBox != null)
             {
-                MainForm.savePointGetter[i] = savetest[i];
-            }*/
+                saveX_Point.Text = Cursor.Position.X.ToString(); // 마우스 좌표 가져와 담음
+                saveY_Point.Text = Cursor.Position.Y.ToString();
+
+                dynamicTextBox.Text = saveX_Point.Text + "," + saveY_Point.Text; // 선택한 좌표저장
+
+                SavePopupPoint[dynamicTextBoxCount] = dynamicTextBox.Text; // 각 자리수 배열대로 순번, 좌표 넣기
+                                                                           // (나중에 리스트뷰 넣을 용도)
+                /*  for (int i=0; i< MainForm.pointListView.Items.Count; i++)
+                  {
+                      MainForm.savePointGetter[i] = savetest[i];
+                  }*/
+            }
+            else
+            {
+                MessageBox.Show("좌표 박스생성을 해주세요 (F3)");
+            }
            
         }
 
@@ -70,6 +92,12 @@ namespace Mecro_Winform
 
     
         private void makePointArea_Click(object sender, EventArgs e) // 좌표 영역 추가 
+        {
+            addPoint();
+            
+        }
+
+        private void addPoint()
         {
             int seq = 0;
 
@@ -84,11 +112,11 @@ namespace Mecro_Winform
                        this.Controls.Add(dynamicTextBox[i]);
                    }*/
 
-            dynamicTextBox  = new TextBox();
+            dynamicTextBox = new TextBox();
             Label dynamicLabel = new Label();
             dynamicTextBox.Size = new Size(80, 10); // Size가 받는 getter, setter 타입이 생성자임 
-            // x, y 좌표 나눌려고 했었는데 사이즈 딱히 필요없게 됨
-     
+                                                    // x, y 좌표 나눌려고 했었는데 사이즈 딱히 필요없게 됨
+
 
 
             dynamicTextBoxCount++; // 동적으로 생성할때마다 한개씩 증가
@@ -96,13 +124,12 @@ namespace Mecro_Winform
             dynamicLabel.Location = new Point(12, 70 + dynamicTextBoxCount * 20); // Y좌표가 한칸당 20씩 늘어남
                                                                                   // 35는 x, 70은 y 좌표, 동적생성시 70 + (1 * 20) =  90, 70 + (2 * 20) = 110 해서  20씩 증가하면서 아래로 내려감
             dynamicTextBox.Name = "dynamicTextBox" + dynamicTextBoxCount;
-            
+
             this.Controls.Add(dynamicTextBox);
             dynamicTextBox.Focus(); // 포커스 주기
 
             dynamicLabel.Name = "label" + dynamicTextBoxCount;
             this.Controls.Add(dynamicLabel);
-            
         }
 
         void Setting_Closing(object sender, FormClosingEventArgs e)
