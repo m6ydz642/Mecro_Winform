@@ -244,7 +244,7 @@ namespace Mecro_Winform
             this.ExcuteSavePoint.Name = "ExcuteSavePoint";
             this.ExcuteSavePoint.Size = new System.Drawing.Size(126, 23);
             this.ExcuteSavePoint.TabIndex = 15;
-            this.ExcuteSavePoint.Text = "저장좌표실행 (F2)";
+            this.ExcuteSavePoint.Text = "저장좌표실행 (F4)";
             this.ExcuteSavePoint.UseVisualStyleBackColor = true;
             this.ExcuteSavePoint.Click += new System.EventHandler(this.ExcuteSavePoint_Click);
             // 

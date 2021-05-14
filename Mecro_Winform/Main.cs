@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,6 +27,8 @@ namespace Mecro_Winform
         int timeMecro;
         int timeX_YPostion;
         string _message;
+        string _countMessage;
+        string _Regex { get; set; }
 
         Setting SettingMenu;
         /*        public string[] SaveMainFormNumber
@@ -52,8 +55,11 @@ namespace Mecro_Winform
            pointListView.View = View.Details; // 디자인에 디테일 뷰 추가
            SettingMenu = new Setting();
             _message = "시간초를 입력해주세요";
-
-
+            _countMessage = "횟수를 입력해주세요";
+             _Regex = "^[0-9]{1,5}$"; // 숫자 0~9까지 1자리부터 5자리까지 ( ^시작 $종료)
+           // _Regex = @"\b[0-9]{5}\b"; ; // 숫자 0~9까지 무조건 5자리 (b는 경계자리?)
+                                        
+            // CheckRegex("");
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) // 단축키 오버라이드
         {
@@ -78,7 +84,11 @@ namespace Mecro_Winform
                 timerX_YPostion.Start();
                 return true;
             }
-
+            if (keyData == (Keys.F4))
+            {
+                ExcueteSavePointMecro();
+                return true;
+            }
             return base.ProcessCmdKey(ref msg, keyData); // 부모 호출
         }
 
@@ -87,6 +97,7 @@ namespace Mecro_Winform
         {
             timerX_YPostion.Start();
             timmerbox.Text = _message;
+            TextboxiterationsCount.Text = _countMessage;
         }
 
         private void stopTimer_Click(object sender, EventArgs e) // 매크로 중지
@@ -177,9 +188,12 @@ namespace Mecro_Winform
                 SettingMenu.ShowDialog(); // 설정창 팝업 호출
         }
    
-        private void ExcueteSavePointMecro() // 저장된 좌표와 시간초로 타이머 실행
+        private void ExcueteSavePointMecro() // 저장된 좌표와 시간초로 타이머 실행 버튼
         {
-             string inputtimmer = timmerbox.Text;
+            string inputtimmer = timmerbox.Text;
+            // int iterationsCount = Int32.Parse(TextboxiterationsCount.Text);
+            string iterationsText = TextboxiterationsCount.Text;
+            int SystemCount = 0;
             if (timmerbox.Text.Equals("") || timmerbox.Text.Equals(_message))
             {
                 MessageBox.Show("시간초를 입력해주세요");
@@ -187,15 +201,28 @@ namespace Mecro_Winform
                 timmerbox.Focus(); //     private void timmerbox_Enter(object sender, EventArgs e)를 호출함
 
             }
+            else if(!CheckRegex(inputtimmer))
+            {
+                MessageBox.Show("시간초를 1~4까지 숫자로 입력해주세요");
+            }
+            else if (iterationsText.Equals("") || iterationsText.Equals(_countMessage))
+            {
+                MessageBox.Show("횟수를 입력해주세요");
+
+            }
+            else if (!CheckRegex(iterationsText))
+            {
+                MessageBox.Show("횟수를 1~4까지 입력해주세요");
+
+            }
             else
             {
                 MessageBox.Show("매크로를 시작합니다!");
-             
+                int iterationsCount = Int32.Parse(iterationsText);
+
                 timerX_YPostion.Stop();// 기존 좌표찍는 타이머는 중단 (콘솔 표시 + 좌표실시간 타이머)
 
-                // 정규식 넣어서 사용하기(?)
-                int iterationsCount = Int32.Parse( TextboxiterationsCount.Text);
-                int SystemCount = 1;
+     
 
 
                 TimeSpan time = TimeSpan.FromSeconds(Int32.Parse(inputtimmer));
@@ -208,6 +235,7 @@ namespace Mecro_Winform
                     {
                         Thread.Sleep(time);
                         Console.WriteLine("저장좌표 SystemCount 시작 : " + SystemCount++);
+                        Console.WriteLine("저장좌표 iterationsCount 횟수 : " + iterationsCount);
                         Console.WriteLine("저장좌표 리스트 : " + ExcutePosition[i]);
 
       
@@ -227,18 +255,24 @@ namespace Mecro_Winform
                             i = 0;
                         }
 
-                        if (SystemCount == iterationsCount)
+                        if (SystemCount >= iterationsCount)
                         {
                             MessageBox.Show("매크로를 자동정지 합니다");
                             status = false;
+                            SystemCount = 0;
                         }
                     }
                 }
             
 
             }
+        }
 
+        private bool CheckRegex (string text){
 
+            Regex rgx = new Regex(_Regex);
+            bool result = rgx.IsMatch(text);
+            return result;
         }
         private void ExcuteSavePoint_Click(object sender, EventArgs e) // point listview 에 저장된 좌표 실행
         {
@@ -256,6 +290,8 @@ namespace Mecro_Winform
             else
             {
                 MessageBox.Show("좌표를 입력해주세요");
+                SettingMenu.MainForm = this; // 자식객체의 Form1 savePointPopup (부모선언) 변수에 Form1(부모) 객체를 넣음 (Setting에서 다시 객체생성을 하지않아도 됨)
+                SettingMenu.ShowDialog(); // 설정창 팝업 호출
             }
 
         }
