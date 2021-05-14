@@ -55,6 +55,8 @@ namespace Mecro_Winform
             this.ExcuteSavePoint = new System.Windows.Forms.Button();
             this.timmerbox = new System.Windows.Forms.TextBox();
             this.labeltimmer = new System.Windows.Forms.Label();
+            this.labeliterations = new System.Windows.Forms.Label();
+            this.TextboxiterationsCount = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,9 +108,9 @@ namespace Mecro_Winform
             // 
             // textBox
             // 
-            this.textBox.Location = new System.Drawing.Point(83, 64);
+            this.textBox.Location = new System.Drawing.Point(54, 64);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(197, 21);
+            this.textBox.Size = new System.Drawing.Size(261, 21);
             this.textBox.TabIndex = 6;
             this.textBox.Text = "텍스트를 입력하세요";
             // 
@@ -248,7 +250,7 @@ namespace Mecro_Winform
             // 
             // timmerbox
             // 
-            this.timmerbox.Location = new System.Drawing.Point(380, 209);
+            this.timmerbox.Location = new System.Drawing.Point(380, 197);
             this.timmerbox.Name = "timmerbox";
             this.timmerbox.Size = new System.Drawing.Size(126, 21);
             this.timmerbox.TabIndex = 16;
@@ -264,11 +266,29 @@ namespace Mecro_Winform
             this.labeltimmer.TabIndex = 17;
             this.labeltimmer.Text = "대기 초";
             // 
+            // labeliterations
+            // 
+            this.labeliterations.AutoSize = true;
+            this.labeliterations.Location = new System.Drawing.Point(378, 234);
+            this.labeliterations.Name = "labeliterations";
+            this.labeliterations.Size = new System.Drawing.Size(57, 12);
+            this.labeliterations.TabIndex = 18;
+            this.labeliterations.Text = "반복 횟수";
+            // 
+            // TextboxiterationsCount
+            // 
+            this.TextboxiterationsCount.Location = new System.Drawing.Point(380, 249);
+            this.TextboxiterationsCount.Name = "TextboxiterationsCount";
+            this.TextboxiterationsCount.Size = new System.Drawing.Size(126, 21);
+            this.TextboxiterationsCount.TabIndex = 19;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 370);
+            this.Controls.Add(this.TextboxiterationsCount);
+            this.Controls.Add(this.labeliterations);
             this.Controls.Add(this.labeltimmer);
             this.Controls.Add(this.timmerbox);
             this.Controls.Add(this.ExcuteSavePoint);
@@ -323,6 +343,8 @@ namespace Mecro_Winform
         private System.Windows.Forms.Button ExcuteSavePoint;
         private System.Windows.Forms.TextBox timmerbox;
         private System.Windows.Forms.Label labeltimmer;
+        private System.Windows.Forms.Label labeliterations;
+        private System.Windows.Forms.TextBox TextboxiterationsCount;
     }
 }
 

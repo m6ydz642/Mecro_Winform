@@ -127,8 +127,8 @@ namespace Mecro_Winform
 
             timerMecro.Start(); // 실행시 타이머 시작, 좌표 실시간으로 움직이게 할꺼 
             
-                Thread.Sleep(300);
-                SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
+            Thread.Sleep(300);
+            SendKeys.Send(textBox.Text); // 텍스트박스 속의 메시지 전송
             
         }
         private void pressF2_Key()
@@ -193,7 +193,10 @@ namespace Mecro_Winform
              
                 timerX_YPostion.Stop();// 기존 좌표찍는 타이머는 중단 (콘솔 표시 + 좌표실시간 타이머)
 
-                int count = 1;
+                // 정규식 넣어서 사용하기(?)
+                int iterationsCount = Int32.Parse( TextboxiterationsCount.Text);
+                int SystemCount = 1;
+
 
                 TimeSpan time = TimeSpan.FromSeconds(Int32.Parse(inputtimmer));
                 // 문자들어올경우 예외처리 함수로 할것
@@ -204,20 +207,31 @@ namespace Mecro_Winform
                     for (int i = 0; i < ExcutePosition.Length; i++)
                     {
                         Thread.Sleep(time);
-                        Console.WriteLine("저장좌표 시작 : " + count++);
-                        Console.WriteLine("저장좌표  : " + ExcutePosition[i]);
+                        Console.WriteLine("저장좌표 SystemCount 시작 : " + SystemCount++);
+                        Console.WriteLine("저장좌표 리스트 : " + ExcutePosition[i]);
+
+      
+                        string[] X_Y_point = ExcutePosition[i].Split(',');
+                        
+
+                        #region 좌표 실행
+                        Cursor.Position = new Point(Int32.Parse(X_Y_point[0]), Int32.Parse(X_Y_point[1]));// 지정한 곳으로 커서 보내기
+                                                                                                    
+                        mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0); // 왼쪽클릭
+                        mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0); // 버튼때기
+                        #endregion
+
 
                         if (i == ExcutePosition.Length)
                         {
                             i = 0;
                         }
 
-                        if (count == 10)
+                        if (SystemCount == iterationsCount)
                         {
                             MessageBox.Show("매크로를 자동정지 합니다");
                             status = false;
                         }
-
                     }
                 }
             
